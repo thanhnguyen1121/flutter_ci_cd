@@ -19,8 +19,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-// git remote add origin git@thanhnguyen1121:thanhnguyen1121/flutter_ci_cd.git
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
