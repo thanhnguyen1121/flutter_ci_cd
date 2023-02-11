@@ -26,7 +26,7 @@ jobs:
         with:
           flutter-version: '3.7.0'
       - run: flutter pub get
-      - run: flutter build apk
+      - run: flutter build apk --release
       - name: changelog
         uses: scottbrenner/generate-changelog-action@master
         id: Changelog
@@ -34,9 +34,9 @@ jobs:
           REPO: ${{ github.repository }}
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@master
-          with:
-            appId: 1:347194776072:android:35fff4068f09f9201e8fbd
-            serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-            releaseNotes: ${{steps.Changelog.outputs.changelog}}
-            file: client/build/app/outputs/flutter-apk/app-dev-release.apk
-            groups: Agiletech
+        with:
+          appId: 1:347194776072:android:35fff4068f09f9201e8fbd
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          releaseNotes: ${{steps.Changelog.outputs.changelog}}
+          file: client/build/app/outputs/flutter-apk/app-dev-release.apk
+          groups: thanhnguyen
