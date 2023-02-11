@@ -33,7 +33,7 @@ jobs:
         env:
           REPO: ${{ github.repository }}
       - name: Firebase App Distribution
-          uses: wzieba/Firebase-Distribution-Github-Action@master
+        uses: wzieba/Firebase-Distribution-Github-Action@master
           with:
             appId: 1:347194776072:android:35fff4068f09f9201e8fbd
             serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
