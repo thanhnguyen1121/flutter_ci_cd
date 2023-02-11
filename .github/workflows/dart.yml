@@ -38,5 +38,5 @@ jobs:
           appId: 1:347194776072:android:35fff4068f09f9201e8fbd
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           releaseNotes: ${{steps.Changelog.outputs.changelog}}
-          file: client/build/app/outputs/flutter-apk/app-dev-release.apk
+          file: app/build/outputs/apk/release/app-release.apk
           groups: thanhnguyen
