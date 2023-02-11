@@ -7,7 +7,7 @@ name: CI
 on:
   push:
     tags:
-      - 'v*'
+      - 'app-v*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,11 +32,11 @@ jobs:
         id: Changelog
         env:
           REPO: ${{ github.repository }}
-      - name: Action Release
-        uses: yakuhzi/action-release@v1.2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          file: build/app/outputs/apk/release/app-release.apk
-          changelogs: ${{ steps.Changelog.outputs.changelog }}
+      - name: Firebase App Distribution
+          uses: wzieba/Firebase-Distribution-Github-Action@master
+          with:
+            appId: 1:347194776072:android:35fff4068f09f9201e8fbd
+            serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+            releaseNotes: ${{steps.Changelog.outputs.changelog}}
+            file: client/build/app/outputs/flutter-apk/app-dev-release.apk
+            groups: Agiletech
