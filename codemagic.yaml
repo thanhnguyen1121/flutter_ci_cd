@@ -15,6 +15,10 @@ workflows:
       events:
         - push
         - tag
+      branch_patterns: # Include or exclude watched branches
+        - pattern: '*'
+          include: true
+          source: true
       tag_patterns:
         - pattern: '*'
           include: true
