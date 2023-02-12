@@ -13,7 +13,6 @@ workflows:
         - firebase_credentials
     triggering:
       events:
-        - push
         - tag
       branch_patterns: # Include or exclude watched branches
         - pattern: 'develop'
