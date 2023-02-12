@@ -14,9 +14,9 @@ workflows:
     triggering:
       events:
         - tag
-      tag_patterns:
-        - pattern: 'app-dev-v*'
-          include: true
+#      tag_patterns:
+#        - pattern: 'app-dev-v*'
+#          include: true
     scripts:
       - |
         # set up debug keystore
