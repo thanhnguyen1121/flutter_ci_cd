@@ -13,10 +13,19 @@ workflows:
         - firebase_credentials
     triggering:
       events:
+        - push
         - tag
+      tag_patterns:
+        - pattern: '*'
+          include: true
+        - pattern: excluded-tag
+          include: false
+        - pattern: included-tag
+          include: true
 #      tag_patterns:
 #        - pattern: 'app-dev-v*'
 #          include: true
+
     scripts:
       - |
         # set up debug keystore
