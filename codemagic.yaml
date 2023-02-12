@@ -1,7 +1,17 @@
 # Automatically generated on 2023-01-30 UTC from https://codemagic.io/app/63d7730398da2dfc54008da3/settings
 # Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
 
+define: &deployGate 'deploygate(
+  api_token: "86ec2d09-dfc2-4822-95aa-7e90430aa802",
+  user: "thanhnguyen9908",
+  apk: "build/app/outputs/flutter-apk/app-release.apk",
+  message: "Build 1",
+  distribution_key: "(Optional) Target Distribution Key",
+  distribution_name: "(Optional) Target Distribution Name"
+  )'
+
 workflows:
+
   default-workflow:
     name: Default Workflow
     max_build_duration: 60
@@ -46,6 +56,11 @@ workflows:
       - flutter build apk --release --no-shrink
       - find . -name "Podfile" -execdir pod install \;
       - flutter build ios --debug --no-codesign
+      - bundle install
+      - bundle exec fastlane beta
+      - fastlane action deploygate
+      - fastlane run deploygate
+
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
@@ -58,17 +73,12 @@ workflows:
       email:
         recipients:
           - thanhnguyen9908@gmail.com
-      firebase:
-        # use this line to autenticate via service account
-        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
-        android:
-          # Add your Android app id retrieved from Firebase console
-          app_id: 1:347194776072:android:35fff4068f09f9201e8fbd
-
-          # Add one or more groups that you wish to distribute your Android application to.
-          # You can create groups in the Firebase console
-          groups:
-            - thanhnguyen
-
-          artifact_type: 'apk'
+#      firebase:
+#        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
+#        android:
+#          app_id: 1:347194776072:android:35fff4068f09f9201e8fbd
+#          groups:
+#            - thanhnguyen
+#
+#          artifact_type: 'apk'
 
