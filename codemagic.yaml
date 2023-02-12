@@ -16,19 +16,16 @@ workflows:
         - push
         - tag
       branch_patterns: # Include or exclude watched branches
-        - pattern: '*'
+        - pattern: 'develop'
           include: true
           source: true
       tag_patterns:
-        - pattern: '*'
+        - pattern: 'app-dev-v*'
           include: true
         - pattern: excluded-tag
           include: false
         - pattern: included-tag
           include: true
-#      tag_patterns:
-#        - pattern: 'app-dev-v*'
-#          include: true
 
     scripts:
       - |
