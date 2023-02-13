@@ -1,15 +1,6 @@
 # Automatically generated on 2023-01-30 UTC from https://codemagic.io/app/63d7730398da2dfc54008da3/settings
 # Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
 
-define: &deployGate 'deploygate(
-  api_token: "86ec2d09-dfc2-4822-95aa-7e90430aa802",
-  user: "thanhnguyen9908",
-  apk: "build/app/outputs/flutter-apk/app-release.apk",
-  message: "Build 1",
-  distribution_key: "(Optional) Target Distribution Key",
-  distribution_name: "(Optional) Target Distribution Name"
-  )'
-
 workflows:
 
   default-workflow:
@@ -56,10 +47,14 @@ workflows:
       - flutter build apk --release --no-shrink
       - find . -name "Podfile" -execdir pod install \;
       - flutter build ios --debug --no-codesign
-      - bundle install
-      - bundle exec fastlane beta
-      - fastlane action deploygate
-      - fastlane run deploygate
+      - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
+      - dg --version
+      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo' 
+        --user 'thanhnguyen9908' 
+        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
+      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
+        --user 'thanhnguyen9908'
+        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
 
     artifacts:
       - build/**/outputs/apk/**/*.apk
