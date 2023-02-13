@@ -7,6 +7,13 @@ workflows:
     name: Default Workflow
     max_build_duration: 60
     environment:
+      vars: # Define your public environment variables here
+        API_KEY: "86ec2d09-dfc2-4822-95aa-7e90430aa802"
+        DISTRIBUTION_KEY: "d27d805b7d3efd33a9b2ed4cee72bf4e92ce8e1a"
+        USER_API_HOST: "https://deploygate.com/organizations/thanhnguyen9908/platforms/android/apps"
+
+#        https://deploygate.com/distributions/d27d805b7d3efd33a9b2ed4cee72bf4e92ce8e1a
+
       flutter: default
       xcode: latest
       cocoapods: default
@@ -47,11 +54,16 @@ workflows:
       - flutter build apk --release --no-shrink
 #      - find . -name "Podfile" -execdir pod install \;
 #      - flutter build ios --debug --no-codesign
-      - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
-      - dg login --email 'thanhnguyen9908@gmail.com' --password 'Anhthanh1102'
-      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
-        --user 'thanhnguyen9908'
-        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
+#      - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
+      - |
+        Curl -H "Authorization: token $API_KEY" -F "file=@build/app/outputs/flutter-apk/app-release.apk" \ 
+        -F "message=New distribution" \
+        -F "distribution_key=$DISTRIBUTION_KEY" \
+        -F "release_note=Release Note" "$USER_API_HOST"
+#      - dg login --terminal --email 'thanhnguyen9908@gmail.com' --password 'Anhthanh1102'
+#      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
+#        --user 'thanhnguyen9908'
+#        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
 #      - dg deploy /Users/builder/clone/build/ios/iphoneos/Runner.app --message 'sample demo'
 #        --user 'thanhnguyen9908'
 #        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
