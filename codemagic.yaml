@@ -56,10 +56,12 @@ workflows:
 #      - flutter build ios --debug --no-codesign
 #      - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
       - |
-        Curl -H "Authorization: token $API_KEY" -F "file=@build/app/outputs/flutter-apk/app-release.apk" \ 
-        -F "message=New distribution" \
-        -F "distribution_key=$DISTRIBUTION_KEY" \
-        -F "release_note=Release Note" "$USER_API_HOST"
+        curl \
+        --url "https://deploygate.com/api/users/thanhnguyen9908/apps" \
+        -H "Authorization: Bearer 86ec2d09-dfc2-4822-95aa-7e90430aa802" \
+        -X POST \
+        -F "file=@build/app/outputs/flutter-apk/app-release.apk" \
+        --form-string "message=sample"
 #      - dg login --terminal --email 'thanhnguyen9908@gmail.com' --password 'Anhthanh1102'
 #      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
 #        --user 'thanhnguyen9908'
