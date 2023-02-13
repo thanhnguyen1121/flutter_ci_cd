@@ -28,33 +28,33 @@ workflows:
           include: true
 
     scripts:
-      - |
-        # set up debug keystore
-        rm -f ~/.android/debug.keystore
-        keytool -genkeypair \
-          -alias androiddebugkey \
-          -keypass android \
-          -keystore ~/.android/debug.keystore \
-          -storepass android \
-          -dname 'CN=Android Debug,O=Android,C=US' \
-          -keyalg 'RSA' \
-          -keysize 2048 \
-          -validity 10000
-      - |
-        # set up local properties
-        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
-      - flutter packages pub get
-      - flutter build apk --release --no-shrink
-      - find . -name "Podfile" -execdir pod install \;
-      - flutter build ios --debug --no-codesign
+#      - |
+#        # set up debug keystore
+#        rm -f ~/.android/debug.keystore
+#        keytool -genkeypair \
+#          -alias androiddebugkey \
+#          -keypass android \
+#          -keystore ~/.android/debug.keystore \
+#          -storepass android \
+#          -dname 'CN=Android Debug,O=Android,C=US' \
+#          -keyalg 'RSA' \
+#          -keysize 2048 \
+#          -validity 10000
+#      - |
+#        # set up local properties
+#        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+#      - flutter packages pub get
+#      - flutter build apk --release --no-shrink
+#      - find . -name "Podfile" -execdir pod install \;
+#      - flutter build ios --debug --no-codesign
       - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
       - dg --version
-      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo' 
-        --user 'thanhnguyen9908' 
-        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
-      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
-        --user 'thanhnguyen9908'
-        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
+#      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
+#        --user 'thanhnguyen9908'
+#        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
+#      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
+#        --user 'thanhnguyen9908'
+#        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
 
     artifacts:
       - build/**/outputs/apk/**/*.apk
