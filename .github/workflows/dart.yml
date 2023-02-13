@@ -9,6 +9,10 @@ on:
     tags:
       - 'app-v*'
 
+env:
+  OWER_NAME: "thanhnguyen9908"
+  API_KEY: "86ec2d09-dfc2-4822-95aa-7e90430aa802"
+  ANDROID_PATH: "@build/app/outputs/flutter-apk/app-release.apk"
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
