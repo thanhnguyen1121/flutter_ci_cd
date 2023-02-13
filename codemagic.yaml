@@ -48,7 +48,7 @@ workflows:
 #      - find . -name "Podfile" -execdir pod install \;
 #      - flutter build ios --debug --no-codesign
       - curl -sSL https://deploygate.com/cli/install/f03d58a1 | bash
-      - dg --version
+      - echo dg --version
 #      - dg deploy build/app/outputs/flutter-apk/app-release.apk --message 'sample demo'
 #        --user 'thanhnguyen9908'
 #        --distribution-key '86ec2d09-dfc2-4822-95aa-7e90430aa802'
