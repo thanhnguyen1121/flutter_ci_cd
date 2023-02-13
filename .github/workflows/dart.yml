@@ -33,13 +33,13 @@ jobs:
         env:
           REPO: ${{ github.repository }}
       - name: distribute to deploy gate
-          run: |
-            curl \
-            --url "https://deploygate.com/api/users/$OWER_NAME/apps" \
-            -H "Authorization: Bearer $API_KEY" \
-            -X POST \
-            -F "file=$ANDROID_PATH" \
-            --form-string "message=new app release dev"
+        run: |
+          curl \
+          --url "https://deploygate.com/api/users/$OWER_NAME/apps" \
+          -H "Authorization: Bearer $API_KEY" \
+          -X POST \
+          -F "file=$ANDROID_PATH" \
+          --form-string "message=new app release dev"
 #      - name: Firebase App Distribution
 #        uses: wzieba/Firebase-Distribution-Github-Action@master
 #        with:
